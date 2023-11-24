@@ -1,27 +1,40 @@
 const express = require("express");
 const router = express.Router();
+const { body, header } = require("express-validator");
 
 router.get("/", (req, res) => {
   res.json({ message: "root endpoint" });
 });
 
 // User
-const User = require("./model/user");
+// const User = require("./models/user");
+const authController = require("./controllers/auth.controllers");
+// POST /api/auth/signup
+router.post(
+  "/api/auth/signup",
+  body("username").custom(async (value) => {
+    const isExist = await authController.fetchByUsername(value);
+    console.log(isExist.length);
+    if (isExist.length) {
+      console.log("??");
 
-// router.get("/api/users", async (ws, req) => {
-//   const allUsers = await User.findALL();
-//   return res.status(200).json(allUsers);
+      throw new Error("Username Duplicated");
+    }
+  }),
+  authController.validate,
+  authController.signup
+);
+
+// POST /api/auth/signin
+// router.post("/api/auth/signup", async (req, res) => {
+//   try {
+//     const user = new User(req.body);
+//     await user.save();
+//     res.send(user);
+//   } catch (e) {
+//     res.status(404).send(e);
+//   }
 // });
-
-router.post("/api/users", async (req, res) => {
-  try {
-    const user = new User(req.body);
-    await user.save();
-    res.send(user);
-  } catch (e) {
-    res.status(404).send(e);
-  }
-});
 
 router.ws("/ws", function (ws, req) {
   ws.on("message", function (msg) {
