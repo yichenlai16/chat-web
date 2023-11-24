@@ -4,13 +4,16 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const port = 3000;
 const expressWs = require("express-ws")(app);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 const Router = require("./router");
+const Ws = require("./router/ws")(expressWs);
 
 app.use(Router);
+app.use(Ws);
 
 const dotenv = require("dotenv");
 dotenv.config();
