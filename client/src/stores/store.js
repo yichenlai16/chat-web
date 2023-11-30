@@ -1,9 +1,9 @@
 import { createPinia } from 'pinia'
 
-const store = createPinia()
+const pinia = createPinia()
 
 export function setupStore(app) {
-  app.use(store)
+  app.use(pinia)
 }
 
-export { store }
+export { pinia }

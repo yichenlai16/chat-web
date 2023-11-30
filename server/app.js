@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const expressWs = require("express-ws")(app);
 
 app.use(bodyParser.json());
@@ -11,7 +11,6 @@ app.use(cookieParser());
 
 const Router = require("./router");
 const Ws = require("./router/ws")(expressWs);
-
 app.use(Router);
 app.use(Ws);
 

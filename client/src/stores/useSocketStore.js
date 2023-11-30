@@ -21,6 +21,7 @@ export const useSocketStore = (app) => {
           this.isConnected &&
             app.config.globalProperties.$socket.sendObj({
               code: 200,
+              heartbeat: true,
               msg: message
             })
         }, this.heartBeatInterval)
