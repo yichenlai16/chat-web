@@ -1,12 +1,26 @@
-# README
-## API Endpoints
+# Chat-Web
 
-- `POST /api/auth/signup`
+WebSocket Chat App using Vue 3 with Pinia, Express
 
-Registers a new user.
+## Quick Start
 
-## WebSocket
+### Client
+
+```bash
+cd client
+npm i
+npm run dev
+```
+### Server
+
+```bash
+cd server
+npm i
+npm run dev
+```
+
+After the setup, you can access the application at:
 
 **URL:**
+- http://localhost:5173
 
-- `ws://localhost:3000`
