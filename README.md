@@ -2,6 +2,9 @@
 
 WebSocket Chat App using Vue 3 with Pinia, Express
 
+![demo gif](https://i.imgur.com/F5wc0Od.gif)
+
+
 ## Quick Start
 
 ### Client
